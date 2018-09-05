@@ -24,5 +24,6 @@ D<sub>aug</sub> = [0;D]
 **Np** is the prediction horizon <br/>
 **Nc** is the control horizon <br/>
 Np>=Nc<br/>
-Minimum value of Np for example 2 in **MPC002** is 4 and minimum value of Nc is 2. Otherwise the system becomes unstable. 
+Minimum value of Np for example 2 in **MPC002** is 4 and minimum value of Nc is 2. Otherwise the system becomes unstable. <br/>
+P.S. : Np = 5 and Nc = 2 is also unstable. (Reason unknown)
                    
