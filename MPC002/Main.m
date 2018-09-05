@@ -36,7 +36,7 @@ for kk = 1:N_sim
     y1(kk) = y ;
     xm_old = xm;
     xm = Ap*xm +Bp*u;
-    y = Cp*xm;
+    y = Cp*xm+Dp*u;
     Xf = [xm-xm_old ; y];
 end
 clc
