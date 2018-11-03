@@ -26,4 +26,10 @@ D<sub>aug</sub> = [0;D]
 Np>=Nc<br/>
 Minimum value of Np for example 2 in **MPC002** is 4 and minimum value of Nc is 2. Otherwise the system becomes unstable. <br/>
 P.S. : Np = 5 and Nc = 2 is also unstable. (Reason unknown)
+
+## QuadIneqConst is to solve the quadratic programming problem with inequality constraints
+Hilbert's Quadratic Programming provides a programmable solution to the Primal Dual method for solving inequality constraints. <br/>
+It calculates a vector of the Lagranges multipliers (lambda) where, <br/>
+S<sub>act</sub> is the set of indices of active constraints. <br/>
+lambda<sub>i</sub> = 0 if i does not belong to S<sub>act</sub> <br/> 
                    
