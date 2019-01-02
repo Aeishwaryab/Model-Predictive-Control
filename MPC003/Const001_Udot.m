@@ -32,13 +32,14 @@ R = eye(Nc,Nc)*rw;
 Rs = ones(Np,1) * rkk;
 
 E = (Phi'*Phi + R);
-Ei = 2*E;
+Einv = inv(E);
 % for Hildert's function 
-H = M/(2*E) *M';
+H = M*Einv *M';
+
 
 %% From previous code trial 
 [n, n_in] = size(B_e);
-xm = [0;0];
+xm = [1;0];
 Xf = zeros(n,1);
 N_sim = 100;
 r = ones(N_sim,1);
@@ -46,20 +47,22 @@ u = 0; % u(k-1) = 0
 y = 0;
 
 % Constrained variables
-xmc = [0;0];
+xmc = [1;0];
 Xfc = zeros(n,1);
 u1 = 0; 
 yc = 0;
+u_adj = [u1;u1];
 for kk = 1:N_sim
     % Hildert's 
-    Fi = -Phi'*(Rs - F*Xfc); 
-    K = gamma + M/(Ei) *Fi;
-    lambda = PrimaDualHildert(H, K);
-    delu_o = -inv(Ei) *Fi; % unconstrained control effort.
-    delu_op = delu_o - Ei\M'*lambda; % constrained control effort.
+    Fi = -2*Phi'*(Rs - F*Xfc); 
+    K = gamma + M* Einv *Fi;
+    lambda = PrimaDualHildert002(H, K);
+    delu_o = -Einv *Fi; % unconstrained control effort.
+    delu_op = delu_o - Einv*M'*lambda; % constrained control effort.
     u1 = u1 + delu_op(1,1);
     u_con(kk) = u1;
-    y_con(kk) = y;
+    y_con(kk) = yc;
+    u_adj = [-1*u1;u1];
     xmc_old = xmc;
     xmc = Am*xmc + Bm*u1;
     yc  = Cm*xmc + Dm*u1;
