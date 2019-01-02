@@ -33,3 +33,6 @@ It calculates a vector of the Lagranges multipliers (lambda) where, <br/>
 S<sub>act</sub> is the set of indices of active constraints. <br/>
 lambda<sub>i</sub> = 0 if i does not belong to S<sub>act</sub> <br/> 
                    
+## MPC003 
+Implementation of Receding Horizon control with **inequality constraints** on the rate of change of control input. <br/>
+Hildert's Quadratic Programming approach is used to determine the active set of constraints. 
